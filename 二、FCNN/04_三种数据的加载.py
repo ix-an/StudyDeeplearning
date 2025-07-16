@@ -1,5 +1,4 @@
 import torch
-import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
 import pandas as pd
 
@@ -61,6 +60,44 @@ def load_image_data():
         break
 
 
+"""加载官方数据集"""
+def load_MNIST_data():
+    transform = transforms.Compose([
+        transforms.ToTensor()
+    ])
+
+    """MNIST构造函数:0-9的手写数字图片，每张图片的尺寸为28*28
+    root: 存储数据集的本地路径
+    train: True表示训练集,False表示测试集
+    transform: 数据转换
+    download: True表示下载数据集,False表示不下载
+    """
+    dataset = datasets.MNIST(
+        root='../datasets/MNIST',
+        train=True,
+        transform=transform,
+        download=True
+    )
+
+    dataloader = DataLoader(
+        dataset=dataset,
+        batch_size=4,
+        shuffle=True
+    )
+
+    for x, y in dataloader:
+        print(x.shape)
+        print(y.shape)
+        break
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     # load_csv_data()
-    load_image_data()
+    # load_image_data()
+    load_MNIST_data()
