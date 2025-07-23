@@ -27,10 +27,12 @@ conv_layer = nn.Conv2d(
     kernel_size=3,
     stride=1,
     padding=1,
-    bias=False
+    bias=True
 )
 # 4. 设置卷积核参数
 conv_layer.weight.data = kernel.view(1, 1, 3, 3)
+conv_layer.bias.data = torch.tensor([0.0])
+# conv_layer.bias.data.fill_(0,0)    # 效果一样
 
 # 5. 执行卷积操作
 output_data = conv_layer(input_data)

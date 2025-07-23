@@ -18,7 +18,8 @@ conv_layer = nn.Conv2d(
     kernel_size=2,    # 卷积核大小
     stride=1,         # 步长
     padding=0,        # 是否填充
-    bias=False)       # 不使用偏置
+    bias=False        # 不使用偏置
+)
 
 # 手动设置卷积层的权重
 conv_layer.weight.data = kernel.view(1,1,2,2)
